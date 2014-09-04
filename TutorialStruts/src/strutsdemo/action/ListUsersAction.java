@@ -1,4 +1,4 @@
-package strutsdemo.controller;
+package strutsdemo.action;
 
 import java.sql.SQLException;
 import java.util.LinkedList;

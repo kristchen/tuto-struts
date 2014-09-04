@@ -1,6 +1,12 @@
 package strutsdemo.bean;
 
-public class UserData {
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts.action.ActionErrors;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionMapping;
+
+public class UserData extends ActionForm {
 
 	private int idUsuario;
 	private String nome;
@@ -64,6 +70,13 @@ public class UserData {
 
 	public void setFaixaIdade(int faixaIdade) {
 		this.faixaIdade = faixaIdade;
+	}
+
+	@Override
+	public ActionErrors validate(ActionMapping mapping,
+			HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		return super.validate(mapping, request);
 	}
 
 }

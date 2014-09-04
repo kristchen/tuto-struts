@@ -20,7 +20,7 @@ public class AdminUsers {
 			try {
 				InitialContext ic = new InitialContext();
 
-				dataSource = (DataSource) ic.lookup("java:jdbc/StrutsDemoDS");
+				dataSource = (DataSource) ic.lookup("java:comp/env/jdbc/StrutsDemoDS");
 
 			} catch (NamingException ex) {
 				System.out.println(ex.getMessage());

@@ -120,10 +120,22 @@
     
         <action 
           path="/listUsers"
-          type="strutsdemo.controller.ListUsersAction">
-          <forward name= "sucess" path="/listUsers.jsp"/>
+          type="strutsdemo.action.ListUsersAction">
+          <forward name= "sucess" path="/pages/listUsers.jsp"/>
         </action>
 
+
+		<action
+			path="/editUser"
+			scope="session"
+			type="strutsdemo.action.EditUserAction"
+			unknown="false"
+			validate="false">
+			<forward
+				name="sucess"
+				path="/pages/editUser.jsp"
+			redirect="false"/>
+		</action>		
     </action-mappings>
 
 
