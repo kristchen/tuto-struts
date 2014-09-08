@@ -14,26 +14,40 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 --%>
-<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
-<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
-<%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
+<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean"%>
+<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
+<%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
 
 <html:html>
 <head>
-<title><bean:message key="welcome.title"/></title>
-<html:base/>
+<title><bean:message key="welcome.title" /></title>
+<html:base />
 </head>
 <body bgcolor="white">
+	<font face="Comic Sans MS" size="3"> <logic:notPresent
+			name="org.apache.struts.action.MESSAGE" scope="application">
 
-<logic:notPresent name="org.apache.struts.action.MESSAGE" scope="application">
-  <font color="red">
-    ERROR:  Application resources not loaded -- check servlet container
-    logs for error messages.
-  </font>
-</logic:notPresent>
+			<font color="red"> ERROR: Application resources not loaded --
+				check servlet container logs for error messages. </font>
 
-<h3><bean:message key="welcome.heading"/></h3>
-<p><bean:message key="welcome.message"/></p>
+		</logic:notPresent>
 
+		<h3>
+			<bean:message key="welcome.heading" />
+		</h3>
+
+		<p>
+
+			<bean:message key="welcome.message" />
+			<html:link page="/listUsers.do">Cadastro de Usuarios</html:link>
+
+		</p>
+
+
+		<p>
+			<font color="darkblue"> Autor:<html:link
+					href="mailto:kristchen@edu.unifor.br">Halex Kristchen</html:link> <br>11/09/2014
+			</font></font>
+	<p></p>
 </body>
 </html:html>

@@ -35,6 +35,7 @@ public class ListUsersAction extends Action {
 			HttpSession session = request.getSession();
 			
 			session.setAttribute("userListBean", users);
+	
 		} catch (SQLException e) {
 		
 			getServlet().log("Erro ao carregar a lista de usuários", e);

@@ -14,6 +14,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 
+import strutsdemo.bean.UserDAO;
 import strutsdemo.bean.UserData;
 import strutsdemo.form.SaveEditUserForm;
 
@@ -26,7 +27,9 @@ public class SaveEditUserAction extends Action {
 		ActionErrors errors = new ActionErrors();
 
 		try {
+			
 			HttpSession session = request.getSession();
+			
 			SaveEditUserForm editUserForm = (SaveEditUserForm) form;
 
 			UserData user = (UserData) session.getAttribute("editUserBean");
@@ -37,8 +40,11 @@ public class SaveEditUserAction extends Action {
 				}
 			}
 
-			if (!errors.isEmpty()) {
+			if (errors.isEmpty()) {
 				BeanUtils.copyProperties(user, editUserForm);
+				UserDAO dao = new UserDAO();
+				dao.updateUser(user);
+
 			}
 
 		} catch (Exception e) {
@@ -47,15 +53,14 @@ public class SaveEditUserAction extends Action {
 			getServlet().log("alterando o usuario", e);
 		}
 
-		if(!errors.isEmpty()){
+		if (!errors.isEmpty()) {
 			saveErrors(request, errors);
 			return mapping.findForward("failure");
-		}else{
-			
-		
-		return mapping.findForward("sucess");
-	
+		} else {
+
+			return mapping.findForward("sucess");
+
 		}
-		}
+	}
 
 }

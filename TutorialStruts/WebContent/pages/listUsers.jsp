@@ -9,7 +9,7 @@
 </logic:notPresent>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html:html >
+<html:html>
 <head>
 <title><bean:message key="users.title" /></title>
 
@@ -18,8 +18,7 @@
 </head>
 <body>
 	<center>
-		<font face="Comic Sans MS" size="3" >
-		</font>
+		<font face="Comic Sans MS" size="3"> </font>
 		<blockquote>
 			<center>
 				<h3>
@@ -38,25 +37,29 @@
 
 					<logic:iterate name="userListBean" id="user">
 
-					<tr>
-						<td align="center"><bean:write name="user"
-								property="idUsuario" /></td>
+						<tr>
+							<td align="center"><bean:write name="user"
+									property="idUsuario" /></td>
 
-						<td><html:link page="/editUser.do" paramId="idUsuario"
-								paramName="user" paramProperty="idUsuario">
-								<bean:write name="user" property="nome" />
+							<td>
+							<html:link page="/editUser.do" paramId="idUsuario"
+									paramName="user" paramProperty="idUsuario">
+									<bean:write name="user" property="nome" />
 
-							</html:link>
-						<td><bean:write name="user" property="login" /></td>
-						<td><bean:write name="user" property="descricaoStatus" /></td>
+								</html:link>
+								
+								</td>
 
-						<td><html:link page="/deleteUser.do" paramId="idUsuario"
-								paramName="user" paramProperty="idUsuario">
-								<bean:message key="prompt.excluir" />
-							</html:link></td>
-					</tr>
+							<td><bean:write name="user" property="login" /></td>
+							<td><bean:write name="user" property="descricaoStatus" /></td>
+
+							<td><html:link page="/deleteUser.do" paramId="idUsuario"
+									paramName="user" paramProperty="idUsuario">
+									<bean:message key="prompt.excluir" />
+								</html:link></td>
+						</tr>
 					</logic:iterate>
-				
+
 				</table>
 				<br />
 				<html:link page="/insertUser.do">Incluir</html:link>

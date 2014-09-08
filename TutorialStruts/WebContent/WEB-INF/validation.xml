@@ -57,34 +57,77 @@
             </field>
         </form>
 
-    </formset>
 
-    <!-- An example formset for another locale -->
-    <formset language="fr">
-
-        <constant>
-            <constant-name>postalCode</constant-name>
-            <constant-value>^[0-9a-zA-Z]*$</constant-value>
-        </constant>
-
-        <!-- An example form -->
-        <form name="logonForm">
-            <field
-                property="username"
-                depends="required">
-                    <arg key="logonForm.username"/>
+       	<form name="saveEditUserForm" >
+       		
+       		<field property="idUsuario" depends="required">
+       		
+       			<arg key="prompt.idUsuario"/>
+       		
+       		</field>	
+           
+            <field property="login"  depends="required">
+            
+                <arg key="prompt.login"/>
+            
             </field>
-            <field
-                property="password"
-                depends="required,mask">
-                    <arg key="logonForm.password"/>
-                    <var>
-                        <var-name>mask</var-name>
-                        <var-value>^[0-9a-zA-Z]*$</var-value>
-                    </var>
+           
+            <field property="nome" depends="required">
+            
+                <arg key="prompt.nome"/>
+            
             </field>
-        </form>
+           
+            <field property="novaSenha" depends="required">
+            
+                <arg key="prompt.novaSenha"/>
+            
+           		 <var>
+                <var-name>mask</var-name>
+                <var-value>^[0-9a-zA-Z]*$</var-value>
+            </var>
+            
+           			
+           
+           
+            </field>       
 
-   </formset>
+                       <field property="senhaAntiga" depends="required">
+            
+                <arg key="prompt.senhaAntiga"/>
+            
+            
+             <var>
+                <var-name>mask</var-name>
+                <var-value>^[0-9a-zA-Z]*$</var-value>
+            </var>
+            
+            
+            
+            </field>
+            
+            
+                        
+            <field property="confirmacaoNovaSenha" depends="required">
+                <arg key="prompt.confimacaoNovaSenha"/>    
+       		
+       		 <var>
+                <var-name>mask</var-name>
+                <var-value>^[0-9a-zA-Z]*$</var-value>
+            </var>
+            
+       		
+       		
+       		
+       		</field>	
+       
+             
+      
+        
+       </form>
+       
+       </formset>
+   
+      
 
 </form-validation>

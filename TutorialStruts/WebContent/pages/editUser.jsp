@@ -113,7 +113,7 @@
 					</tr>
 					<tr>
 						<td align="right"><bean:message key="prompt.ativo" />:</td>
-						<td align="left"><html:checkbox property="ativo"
+						<td align="left"><html:checkbox property="descricaoStatus"
 								name="editUserBean" titleKey="prompt.ativo" /></td>
 					</tr>
 					<tr>
