@@ -13,7 +13,7 @@ public class UserData extends ActionForm {
 	private String login;
 	private String senha;
 	private String sexo;
-	private boolean ativo;
+	private boolean descricaoStatus;
 	private int faixaIdade;
 
 	public int getIdUsuario() {
@@ -56,12 +56,14 @@ public class UserData extends ActionForm {
 		this.sexo = sexo;
 	}
 
-	public boolean isAtivo() {
-		return ativo;
+	
+
+	public boolean getDescricaoStatus() {
+		return descricaoStatus;
 	}
 
-	public void setAtivo(boolean ativo) {
-		this.ativo = ativo;
+	public void setDescricaoStatus(boolean descricaoStatus) {
+		this.descricaoStatus = descricaoStatus;
 	}
 
 	public int getFaixaIdade() {

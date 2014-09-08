@@ -34,5 +34,6 @@
 	<classpathentry kind="lib" path="/home/halex/struts-1.3.10/lib/struts-taglib-1.3.10.jar"/>
 	<classpathentry kind="lib" path="/home/halex/struts-1.3.10/lib/struts-tiles-1.3.10.jar"/>
 	<classpathentry kind="lib" path="/home/halex/apache-tomcat-8.0.9/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="/home/halex/mysql-connector-java-5.1.32/mysql-connector-java-5.1.32-bin.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

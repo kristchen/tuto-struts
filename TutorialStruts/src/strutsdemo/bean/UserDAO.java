@@ -6,80 +6,23 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
+import strutsdemo.connection.Conexao;
 
-public class AdminUsers {
+public class UserDAO {
 
-	protected static DataSource dataSource;
-
-	public AdminUsers() throws Exception {
-
-		if (dataSource == null) {
-			try {
-				InitialContext ic = new InitialContext();
-
-				dataSource = (DataSource) ic.lookup("java:comp/env/jdbc/StrutsDemoDS");
-
-			} catch (NamingException ex) {
-				System.out.println(ex.getMessage());
-				throw ex;
-			}
-		}
-
-	}
-
-	protected Connection getConnection() throws SQLException {
-		Connection conn = null;
-
-		try {
-			conn = dataSource.getConnection();
-		} catch (SQLException e) {
-			throw e;
-		}
-
-		return conn;
-	}
-
-	protected void closeConnection(Connection conn, PreparedStatement stmt,
-			ResultSet rs) {
-
-		if (rs != null) {
-			try {
-				rs.close();
-			} catch (SQLException e) {
-
-			}
-		}
-		if (stmt != null) {
-			try {
-				stmt.close();
-			} catch (SQLException e) {
-
-			}
-		}
-		if (conn != null) {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-
-			}
-
-		}
-
-	}
+	private Connection connection;
 
 	public LinkedList<UserData> getUserList() throws SQLException {
 
-		Connection conn = null;
+		
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		LinkedList<UserData> users = new LinkedList<UserData>();
 
 		try {
-			conn = getConnection();
-			stmt = conn.prepareStatement("SELECT * FROM USUARIO");
+			this.connection = new Conexao().getConnection();
+
+			stmt = connection.prepareStatement("select * from usuario");
 
 			rs = stmt.executeQuery();
 
@@ -90,7 +33,7 @@ public class AdminUsers {
 				user.setLogin(rs.getString("login"));
 				user.setSenha(rs.getString("senha"));
 				user.setSexo(rs.getString("sexo"));
-				user.setAtivo(rs.getBoolean("ativo"));
+				user.setDescricaoStatus(rs.getBoolean("ativo"));
 				user.setFaixaIdade(rs.getInt("faixa_idade"));
 
 				users.add(user);
@@ -98,19 +41,22 @@ public class AdminUsers {
 			}
 
 		} finally {
-			closeConnection(conn, stmt, rs);
+
 		}
 
 		return users;
 	}
 
+	@SuppressWarnings("null")
 	public void insertUser(UserData user) throws SQLException {
-		Connection conn = null;
+		@SuppressWarnings("unused")
+		
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
-			conn = getConnection();
+			this.connection = new Conexao().getConnection();
 
+			@SuppressWarnings("unused")
 			String sql = "insert into usuario \n"
 					+ "(id_usuario, nome, login, senha, sexo, ativo, faixa_idade) \n";
 			stmt.setInt(1, user.getIdUsuario());
@@ -118,7 +64,7 @@ public class AdminUsers {
 			stmt.setString(3, user.getLogin());
 			stmt.setString(4, user.getSenha());
 			stmt.setString(5, user.getSexo());
-			stmt.setBoolean(6, user.isAtivo());
+			stmt.setBoolean(6, user.getDescricaoStatus());
 			stmt.setInt(7, user.getFaixaIdade());
 			stmt.executeUpdate();
 
@@ -138,20 +84,20 @@ public class AdminUsers {
 	}
 
 	public void updateUser(UserData user) throws SQLException {
-		Connection conn = null;
+		this.connection = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
-			conn = getConnection();
+			this.connection = new Conexao().getConnection();
 			String sql = "update usuario set \n"
 					+ "nome = ?, login = ?, senha = ?, sexo = ?, ativo = ?, faixa_idade = ? \n"
 					+ "where id_usuario = ?";
-			stmt = conn.prepareStatement(sql);
+			stmt = this.connection.prepareStatement(sql);
 			stmt.setString(1, user.getNome());
 			stmt.setString(2, user.getLogin());
 			stmt.setString(3, user.getSenha());
 			stmt.setString(4, user.getSexo());
-			short ativo = (short) (user.isAtivo() ? 1 : 0);
+			short ativo = (short) (user.getDescricaoStatus() ? 1 : 0);
 			stmt.setShort(5, ativo);
 			stmt.setInt(6, user.getFaixaIdade());
 			stmt.setInt(7, user.getIdUsuario());
@@ -169,12 +115,12 @@ public class AdminUsers {
 	}
 
 	public void deleteUser(int idUsuario) throws SQLException {
-		Connection conn = null;
+		
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
-			conn = getConnection();
-			stmt = conn
+			this.connection = new Conexao().getConnection();
+			stmt = connection
 					.prepareStatement("delete from usuario where id_usuario = ?");
 			stmt.setInt(1, idUsuario);
 			stmt.executeUpdate();
@@ -188,6 +134,14 @@ public class AdminUsers {
 				stmt.close();
 			}
 		}
+	}
+
+	public Connection getConnection() {
+		return connection;
+	}
+
+	public void setConnection(Connection connection) {
+		this.connection = connection;
 	}
 
 }

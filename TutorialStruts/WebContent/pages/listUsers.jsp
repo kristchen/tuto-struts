@@ -8,10 +8,6 @@
 	<logic:redirect forward="error" />
 </logic:notPresent>
 
-
-
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html:html >
 <head>
@@ -22,7 +18,8 @@
 </head>
 <body>
 	<center>
-		<font face="Comic Sans MS" size="3" />
+		<font face="Comic Sans MS" size="3" >
+		</font>
 		<blockquote>
 			<center>
 				<h3>
@@ -39,7 +36,7 @@
 
 					<%-- loop percorrendo a lista de usuarios --%>
 
-					<logic:iterate name="userListBean" id="user"></logic:iterate>
+					<logic:iterate name="userListBean" id="user">
 
 					<tr>
 						<td align="center"><bean:write name="user"
@@ -58,6 +55,8 @@
 								<bean:message key="prompt.excluir" />
 							</html:link></td>
 					</tr>
+					</logic:iterate>
+				
 				</table>
 				<br />
 				<html:link page="/insertUser.do">Incluir</html:link>

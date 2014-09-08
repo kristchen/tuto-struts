@@ -58,7 +58,10 @@
                 type="java.lang.String"/>
        </form-bean>
     end sample -->
-    </form-beans>
+   
+   <form-bean  name="saveEditUserForm"
+   type="strutsdemo.form.SaveEditUserForm"/>
+       </form-beans>
 
 
 <!-- ========================================= Global Exception Definitions -->
@@ -136,6 +139,25 @@
 				path="/pages/editUser.jsp"
 			redirect="false"/>
 		</action>		
+   
+   
+   		<action
+			attribute="saveEditUserForm"
+			input="/pages/editUser.jsp"
+			name="saveEditUserForm"
+			path="/saveEditUser"
+			scope="session"
+			type="strutsdemo.action.SaveEditUserAction"
+			unknown="false"
+			validate="true">
+			<forward
+				name="success"
+				path="/pages/listUsers.jsp"
+				redirect="false"/>
+			</action>
+   
+   
+   
     </action-mappings>
 
 

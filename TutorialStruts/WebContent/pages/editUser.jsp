@@ -1,7 +1,13 @@
 <%@ taglib uri="/tags/struts-logic" prefix="logic"%>
 <%@ taglib uri="/tags/struts-bean" prefix="bean"%>
 <%@ taglib uri="/tags/struts-html" prefix="html"%>
-<html:html>
+
+<logic:notPresent name="editUserBean" scope="session">
+	<logic:redirect forward="error" />
+</logic:notPresent>
+
+
+<html:html >
 <head>
 <title><bean:message key="editUser.title" /></title>
 </head>
@@ -11,7 +17,7 @@
 			<h3>
 				<font color="blue"><bean:message key="editUser.title" /></font>
 			</h3>
-			<html:form action="/saveEditUser.do" method="post" focus="login">
+			<html:form action="/saveEditUser.do" method="post" focus="login" >
 				<html:hidden property="idUsuario" name="editUserBean" />
 				<table width="80%" border="0">
 					<tr>

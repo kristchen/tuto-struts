@@ -13,7 +13,7 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
-import strutsdemo.bean.AdminUsers;
+import strutsdemo.bean.UserDAO;
 
 public class ListUsersAction extends Action {
 
@@ -23,15 +23,20 @@ public class ListUsersAction extends Action {
 
 		LinkedList users = null;
 
-		ActionErrors errors = null;
+		ActionErrors errors = new ActionErrors();
 
 		try {
-			AdminUsers adminUsers = new AdminUsers();
-			users = adminUsers.getUserList();
+			UserDAO dao = new UserDAO();
+			
+			//AdminUsers adminUsers = new AdminUsers();
+			
+			users = dao.getUserList();
+			
 			HttpSession session = request.getSession();
+			
 			session.setAttribute("userListBean", users);
 		} catch (SQLException e) {
-			errors.add(new ActionErrors());
+		
 			getServlet().log("Erro ao carregar a lista de usuários", e);
 		}
 
