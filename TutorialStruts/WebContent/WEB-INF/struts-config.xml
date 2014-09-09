@@ -134,13 +134,20 @@
 
     end samples -->
     
+    
+    	<action
+    		path="/deleteUser"
+    		type="strutsdemo.action.DeleteUserAction">
+    		<forward name="sucess" path="/pages/listUsers.jsp"/>
+    	</action>	
+    
+    
         <action 
           path="/listUsers"
           type="strutsdemo.action.ListUsersAction">
           <forward name= "sucess" path="/pages/listUsers.jsp"/>
         </action>
-
-
+	
 		<action
 			path="/editUser"
 			scope="session"
@@ -152,8 +159,7 @@
 				path="/pages/editUser.jsp"
 			redirect="false"/>
 		</action>		
-   
-		
+   		
 		<action
 			path="/insertUser"
 			scope="session"
@@ -180,7 +186,7 @@
 				name="sucess"
 				path="/pages/listUsers.jsp"
 				redirect="false"/>
-			</action>	
+		</action>	
 		   
    		<action
 			attribute="saveEditUserForm"

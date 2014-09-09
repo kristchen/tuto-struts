@@ -14,7 +14,6 @@ public class UserDAO {
 
 	public LinkedList<UserData> getUserList() throws SQLException {
 
-		
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		LinkedList<UserData> users = new LinkedList<UserData>();
@@ -47,18 +46,19 @@ public class UserDAO {
 		return users;
 	}
 
-	@SuppressWarnings("null")
 	public void insertUser(UserData user) throws SQLException {
-		@SuppressWarnings("unused")
-		
+
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
+
 			this.connection = new Conexao().getConnection();
 
-			@SuppressWarnings("unused")
 			String sql = "insert into usuario \n"
-					+ "(id_usuario, nome, login, senha, sexo, ativo, faixa_idade) \n";
+					+ "(id_usuario, nome, login, senha, sexo, ativo, faixa_idade) \n values(?,?,?,?,?,?,?)";
+
+			stmt = connection.prepareStatement(sql);
+
 			stmt.setInt(1, user.getIdUsuario());
 			stmt.setString(2, user.getNome());
 			stmt.setString(3, user.getLogin());
@@ -72,9 +72,7 @@ public class UserDAO {
 			throw e;
 		} finally {
 
-			if (rs != null) {
-				rs.close();
-			}
+			
 			if (stmt != null) {
 				stmt.close();
 
@@ -115,9 +113,11 @@ public class UserDAO {
 	}
 
 	public void deleteUser(int idUsuario) throws SQLException {
-		
+
 		PreparedStatement stmt = null;
+		
 		ResultSet rs = null;
+		
 		try {
 			this.connection = new Conexao().getConnection();
 			stmt = connection
